@@ -1,0 +1,18 @@
+# ALABAAD Engineering Consultants
+
+> ALABAAD is an architecture and engineering consultancy established in Ras Al Khaimah, United Arab Emirates, in 2005.
+
+## Core positioning
+- Tailored, context-driven architectural design.
+- AOR and approval-related consultancy.
+- Multidisciplinary coordination and BIM-enabled project clarity.
+- Technology supports professional engineering judgement; it does not replace it.
+
+## Website sections
+- Company: /#company
+- Approach: /#approach
+- Methodology and work: /#work
+- Company story: /#story
+- Contact: /#contact
+
+Only facts published on the website should be treated as verified public company information.

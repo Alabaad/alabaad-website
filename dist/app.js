@@ -1,0 +1,49 @@
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const reveals = document.querySelectorAll('.reveal');
+reveals.forEach(el => [...el.children].forEach((child, i) => child.style.setProperty('--i', i)));
+if (reduceMotion || !('IntersectionObserver' in window)) reveals.forEach(el => el.classList.add('is-visible'));
+else {
+  const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+  }), { threshold: .18 });
+  reveals.forEach(el => observer.observe(el));
+}
+
+const menuButton = document.querySelector('.menu-button');
+const mobileMenu = document.querySelector('#mobile-menu');
+menuButton?.addEventListener('click', () => {
+  const open = menuButton.getAttribute('aria-expanded') === 'true';
+  menuButton.setAttribute('aria-expanded', String(!open));
+  mobileMenu.hidden = open;
+  document.body.classList.toggle('menu-open', !open);
+});
+mobileMenu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+  menuButton.setAttribute('aria-expanded', 'false'); mobileMenu.hidden = true; document.body.classList.remove('menu-open');
+}));
+
+document.querySelectorAll('.pillar').forEach(pillar => pillar.addEventListener('click', () => {
+  pillar.setAttribute('aria-expanded', String(pillar.getAttribute('aria-expanded') !== 'true'));
+}));
+
+const sections = document.querySelectorAll('main section[id]');
+const navLinks = document.querySelectorAll('.desktop-nav a');
+if ('IntersectionObserver' in window) {
+  const navObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) navLinks.forEach(link => link.classList.toggle('active', link.hash === `#${entry.target.id}`));
+  }), { rootMargin: '-35% 0px -55%' });
+  sections.forEach(section => navObserver.observe(section));
+}
+
+const form = document.querySelector('#contact-form');
+form?.addEventListener('submit', event => {
+  event.preventDefault();
+  const status = form.querySelector('.form-status');
+  const invalid = [...form.querySelectorAll('[required]')].find(field => !field.validity.valid);
+  if (invalid) {
+    status.hidden = false; status.className = 'form-status error'; status.textContent = `Please complete ${invalid.name === 'subject' ? 'project or enquiry' : invalid.name} correctly.`; invalid.focus(); return;
+  }
+  const data = new FormData(form);
+  const body = `Name: ${data.get('name')}\nCompany: ${data.get('company')}\nEmail: ${data.get('email')}\nPhone: ${data.get('phone')}\n\n${data.get('message')}`;
+  status.hidden = false; status.className = 'form-status'; status.textContent = 'Your enquiry is ready. Your email app will open so you can choose the verified recipient.';
+  setTimeout(() => location.href = `mailto:?subject=${encodeURIComponent(data.get('subject'))}&body=${encodeURIComponent(body)}`, 250);
+});
