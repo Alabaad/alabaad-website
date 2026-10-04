@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Replace SITE_URL with the verified production domain before launch. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>SITE_URL/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>SITE_URL/ar/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://alabaad.ae/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://alabaad.ae/ar/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
 </urlset>
