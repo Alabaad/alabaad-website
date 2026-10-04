@@ -50,6 +50,6 @@ form?.addEventListener('submit', event => {
   }
   const data = new FormData(form);
   const body = isArabic ? `الاسم: ${data.get('name')}\nالشركة: ${data.get('company')}\nالبريد الإلكتروني: ${data.get('email')}\nالهاتف: ${data.get('phone')}\n\n${data.get('message')}` : `Name: ${data.get('name')}\nCompany: ${data.get('company')}\nEmail: ${data.get('email')}\nPhone: ${data.get('phone')}\n\n${data.get('message')}`;
-  status.hidden = false; status.className = 'form-status'; status.textContent = isArabic ? 'استفسارك جاهز. سيفتح تطبيق البريد لتختار جهة الاستلام المعتمدة.' : 'Your enquiry is ready. Your email app will open so you can choose the verified recipient.';
-  setTimeout(() => location.href = `mailto:?subject=${encodeURIComponent(data.get('subject'))}&body=${encodeURIComponent(body)}`, 250);
+  status.hidden = false; status.className = 'form-status'; status.textContent = isArabic ? 'استفسارك جاهز. سيفتح تطبيق البريد برسالة موجهة إلى الأبعاد.' : 'Your enquiry is ready. Your email app will open with a message addressed to ALABAAD.';
+  setTimeout(() => location.href = `mailto:info@alabaad.ae?subject=${encodeURIComponent(data.get('subject'))}&body=${encodeURIComponent(body)}`, 250);
 });
