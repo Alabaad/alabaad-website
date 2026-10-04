@@ -14,5 +14,6 @@
 - Methodology and work: /#work
 - Company story: /#story
 - Contact: /#contact
+- Arabic edition: /ar/
 
 Only facts published on the website should be treated as verified public company information.
