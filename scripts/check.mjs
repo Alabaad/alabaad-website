@@ -18,7 +18,8 @@ const checks = [
   ['Arabic page RTL', /<html lang="ar" dir="rtl">/.test(arabic)],
   ['Arabic local logo', /assets\/logo-ar-light\.png/.test(arabic)],
   ['language switch', /class="language-switch"/.test(html) && /class="language-switch"/.test(arabic)],
-  ['hero style comparison', /data-hero-style="warm"/.test(html) && /data-hero-style="charcoal"/.test(html)],
+  ['charcoal hero default', /class="hero hero-option-charcoal"/.test(html) && /class="hero hero-option-charcoal"/.test(arabic)],
+  ['warm hero option preserved', /\.hero-shade\{background:linear-gradient\(90deg,rgba\(247,245,240/.test(await readFile(resolve(root, 'styles.css'), 'utf8'))],
 ];
 
 const failed = checks.filter(([, ok]) => !ok);

@@ -26,20 +26,6 @@ document.querySelectorAll('.language-switch').forEach(link => link.addEventListe
   if (location.hash) link.href = `${link.getAttribute('href').split('#')[0]}${location.hash}`;
 }));
 
-const hero = document.querySelector('.hero');
-const heroStyleButtons = document.querySelectorAll('[data-hero-style]');
-const applyHeroStyle = style => {
-  const next = style === 'charcoal' ? 'charcoal' : 'warm';
-  hero?.classList.toggle('hero-option-charcoal', next === 'charcoal');
-  hero?.classList.toggle('hero-option-warm', next === 'warm');
-  heroStyleButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.heroStyle === next)));
-};
-applyHeroStyle(localStorage.getItem('alabaad-hero-style') || 'warm');
-heroStyleButtons.forEach(button => button.addEventListener('click', () => {
-  applyHeroStyle(button.dataset.heroStyle);
-  localStorage.setItem('alabaad-hero-style', button.dataset.heroStyle);
-}));
-
 document.querySelectorAll('.pillar').forEach(pillar => pillar.addEventListener('click', () => {
   pillar.setAttribute('aria-expanded', String(pillar.getAttribute('aria-expanded') !== 'true'));
 }));
