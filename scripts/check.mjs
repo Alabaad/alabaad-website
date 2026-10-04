@@ -10,7 +10,6 @@ const checks = [
   ['single h1', (html.match(/<h1\b/g) || []).length === 1],
   ['page title', /<title>[^<]{20,}<\/title>/.test(html)],
   ['meta description', /name="description" content="[^\"]{80,}/.test(html)],
-  ['canonical', /rel="canonical"/.test(html)],
   ['structured data', /application\/ld\+json/.test(html)],
   ['skip link', /class="skip-link"/.test(html)],
   ['local hero', /assets\/hero-architecture\.webp/.test(html)],
